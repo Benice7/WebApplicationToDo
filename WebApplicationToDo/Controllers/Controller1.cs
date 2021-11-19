@@ -8,9 +8,13 @@ using WebApplicationToDo.Models;
 
 namespace WebApplicationToDo.Controllers
 {
+    [Route("/todos")]
     public class TestController : ApiController
     {
-        public static List<Model1> lTodo = new List<Model1>();
+        public static List<Model1> lTodo = new List<Model1>()
+        {
+            new Model1{id = 0, name = "Do some Work", completed = false}
+        };
 
         [HttpGet]
         public List<Model1> Get()
@@ -19,10 +23,12 @@ namespace WebApplicationToDo.Controllers
             return lTodo;
         }
 
-        [HttpGet]
-        public Model1 Get(int id)
+        [HttpPut]
+        [Route("{id}")]
+        public Model1 Put(int id)//update todo
         {
             Model1 Todo = lTodo.Find(i => i.id == id);
+            Todo.completed = true;
             return Todo;
         }
     }

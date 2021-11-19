@@ -4,20 +4,26 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebApplicationToDo.Models;
 
 namespace WebApplicationToDo.Controllers
 {
     public class TestController : ApiController
     {
+        public static List<Model1> lTodo = new List<Model1>();
 
-        public string[] Get()
+        [HttpGet]
+        public List<Model1> Get()
         {
 
+            return lTodo;
+        }
 
-            return new string[]
-            {   "Hello",
-                "World"
-            };
+        [HttpGet]
+        public Model1 Get(int id)
+        {
+            Model1 Todo = lTodo.Find(i => i.id == id);
+            return Todo;
         }
     }
 }

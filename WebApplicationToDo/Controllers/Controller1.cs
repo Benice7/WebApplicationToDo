@@ -36,7 +36,7 @@ namespace WebApplicationToDo.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public List<Model1> Put(int id, [FromBody] Model1 model)//update todo
+        public List<Model1> Put(int id, [FromBody] Model1 model)
         {
             Model1 TodoUpdate = lTodo.Find(i => i.id == id);
             int index = lTodo.IndexOf(TodoUpdate);
@@ -48,7 +48,7 @@ namespace WebApplicationToDo.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public List<Model1> Delete(int id)//delete todo
+        public List<Model1> Delete(int id)
         {
             Model1 Tododel = lTodo.Find(i => i.id == id);
             lTodo.Remove(Tododel);

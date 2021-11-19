@@ -25,6 +25,11 @@ namespace WebApplicationToDo.Controllers
         [HttpPost]
         public List<Model1> Post([FromBody] Model1 model)
         {
+            if(model.name == "I'm lazy")
+            {
+                var message = "Cannot add " + model.name + ".";
+                throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound, message));
+            }
             lTodo.Add(model);
             return lTodo;
         }
